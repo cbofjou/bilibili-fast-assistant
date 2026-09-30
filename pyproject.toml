@@ -1,0 +1,53 @@
+[project]
+name = "bilibili-fast-assistant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "cbofjou", email = "2046345294@qq.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "flet>=1.0.3",
+    "httpx>=0.28.1",
+    "pillow>=12.3.0",
+    "qrcode>=8.2",
+]
+
+[project.scripts]
+bilibili-fast-assistant = "bilibili_fast_assistant.main:run"
+
+[build-system]
+requires = ["uv_build>=0.12.10,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "flet-cli>=1.0.3",
+    "flet-desktop>=1.0.3",
+    "flet-web>=1.0.3",
+    "flet[test]>=1.0.3",
+    "pyinstaller>=6.22.3",
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["src"]
+# 默认只跑离线用例；联网用例用 `uv run pytest -m live --override-ini=addopts=` 触发
+addopts = "-m 'not live'"
+markers = [
+    "live: 需要访问 B 站真实接口，离线环境会被默认跳过",
+]
+
+[tool.flet]
+desktop_flavor = "light"
+org = "com.cbofjou"
+product = "bilibili-fast-assistant"
+company = "cbofjou"
+copyright = "Copyright (C) 2026 by cbofjou"
+
+[tool.flet.app]
+path = "src/bilibili_fast_assistant"
