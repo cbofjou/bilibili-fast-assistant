@@ -17,6 +17,9 @@ __pycache__/
 build/
 dist/
 
+# flet pack 每次都会重新生成这个构建配方，属于产物不是源码
+*.spec
+
 # 本地配置（后续放 Cookie 等敏感信息）
 .env
 .env.*
@@ -27,3 +30,4 @@ tests
 .python-version
 pyproject.toml
 uv.lock
+tools
