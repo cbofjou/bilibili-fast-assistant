@@ -127,3 +127,6 @@ src/bilibili_fast_assistant/
   否则会去给预告点赞投币。
 - **分区之间靠 `season_type` 区分**：`media_bangumi` 通道同时包含番剧(1)和国创(4)，
   只能靠这个字段分流。
+
+## License
+This project is licensed under the MIT License. See LICENSE for details.
