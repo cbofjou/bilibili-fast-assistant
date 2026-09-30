@@ -95,6 +95,8 @@ src/bilibili_fast_assistant/
 ├── config.py              # 接口地址、UA、超时等常量
 ├── theme.py               # B 站粉 + 白的配色与尺寸
 ├── main.py                # Flet 入口
+├── assets/
+│   └── icon.png           # 应用图标（由 tools/make_icon.py 生成）
 ├── api/                   # 所有网络请求
 │   ├── http.py            #   统一 httpx 客户端（UA / Referer / 错误码）
 │   ├── wbi.py             #   WBI 签名（搜索接口必须要）
