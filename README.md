@@ -42,23 +42,6 @@
   3. 一旦撞上风控就自动降速（间隔翻倍），**连续 3 次风控直接整批停下**
 - 失败原因写入 `~/.config/bilibili-fast-assistant/failures.log`
 
-每集大约 3 秒。193 集的整季三连大概要 10 分钟，中途可以点「停止」。
-
-### 演练模式
-
-想先看看会发生什么、但不想真的动账号，可以开演练模式：
-
-```bash
-BFA_DRY_RUN=1 uv run flet run
-```
-
-界面流程完全一样，但不会发出任何写请求。
-
-尚未实现：
-
-- 番剧、UP 两个分区
-- 每次执行前只在会话内查一次状态，跨次不缓存（避免看到过期的"已操作"）
-
 ## 关于登录
 
 **不会让用户输入账号密码**，用的是 B 站官方的扫码登录：
@@ -105,27 +88,6 @@ uv run flet run --web --host 127.0.0.1 -p 8550
 Web 模式下 **Python 仍然跑在本机**，浏览器只是渲染端（通过 WebSocket 连回来）。
 这一点很关键：所有 B 站请求都是服务端发出的，不涉及浏览器跨域。
 
-实测对比过：
-
-| 调用方 | 结果 |
-| --- | --- |
-| 服务端（不带 Origin） | `200` 正常 |
-| 浏览器直连（带 Origin） | `403`，且响应无 `access-control-allow-origin` |
-| 图片 CDN | `200` + `access-control-allow-origin: *` |
-
-所以封面图能直接在浏览器里加载，但 API 必须由服务端调用。
-后续如果要加登录 Cookie，注意 Web 模式默认监听 `0.0.0.0`，局域网内其他人也能访问。
-
-## 测试
-
-```bash
-# 离线用例（默认）：输入解析、篇章切分、界面结构与交互
-uv run pytest
-
-# 联网用例：真实调用 B 站接口跑通"搜索 -> 详情"整条链路
-uv run pytest -m live --override-ini=addopts=
-```
-
 ## 目录结构
 
 ```
@@ -165,5 +127,3 @@ src/bilibili_fast_assistant/
   否则会去给预告点赞投币。
 - **分区之间靠 `season_type` 区分**：`media_bangumi` 通道同时包含番剧(1)和国创(4)，
   只能靠这个字段分流。
-
-接口调研的完整记录见 [`docs/bilibili-api-research.md`](docs/bilibili-api-research.md)。
