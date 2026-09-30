@@ -1,0 +1,29 @@
+# 添加.idea到.gitignore文件中
+.idea/
+
+# 忽略所有的日志文件
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# 虚拟环境与构建产物
+.venv/
+build/
+dist/
+
+# 本地配置（后续放 Cookie 等敏感信息）
+.env
+.env.*
+!.env.example
+
+tests
+
+.python-version
+pyproject.toml
+uv.lock
