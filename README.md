@@ -56,6 +56,7 @@
   登录请求直接发给 `passport.bilibili.com`，凭据直接写本地文件。
 - 凭据文件在用户配置目录（Linux 是 `~/.config/bilibili-fast-assistant/credentials.json`），
   权限 `600`，只存 Cookie，不存账号密码。想退出登录点一下「退出」就会删掉。
+- 登陆指纹默认设置的是 Chrome 浏览器，登陆后会在 B 站社区中心收到扫码登陆消息。
 - 为什么不用开放平台的 OAuth？开放平台的 `access_token` 只对开放平台自己的接口有效，
   而点赞 / 投币 / 收藏这些 Web 接口只认 Cookie（`SESSDATA` + `bili_jct`），
   两套凭证互不相通。
