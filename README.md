@@ -85,9 +85,6 @@ uv run flet run --web -r
 uv run flet run --web --host 127.0.0.1 -p 8550
 ```
 
-Web 模式下 **Python 仍然跑在本机**，浏览器只是渲染端（通过 WebSocket 连回来）。
-这一点很关键：所有 B 站请求都是服务端发出的，不涉及浏览器跨域。
-
 ## 目录结构
 
 ```
@@ -118,17 +115,6 @@ src/bilibili_fast_assistant/
     ├── components/        # 卡片、状态占位、三连选择器
     └── views/             # 搜索页、详情页
 ```
-
-## 几个关键设计
-
-- **三连是"按集"而不是"按整部动漫"**：点赞 / 投币 / 收藏接口收的都是单集的 `aid`；
-  只有"追番"是整季维度。所以详情页里的选择最终会落到每一集上。
-- **长番的篇章是自己还原的**：B 站没有"篇章"实体，只能按 `long_title`
-  的"名字 + 序号"前缀切分（如《凡人修仙传》的 10 个篇章）。
-- **`episodes[]` 里混着"每集预告"**：必须按 `section_type == 0` 过滤，
-  否则会去给预告点赞投币。
-- **分区之间靠 `season_type` 区分**：`media_bangumi` 通道同时包含番剧(1)和国创(4)，
-  只能靠这个字段分流。
 
 ## License
 This project is licensed under the MIT License. See LICENSE for details.
