@@ -2,7 +2,7 @@
 
 导航是手写的（不依赖路由库），只维护两个状态：
 
-* 当前分区（国创 / 番剧 / UP）
+* 当前分区（国创 / 番剧）
 * 当前内容区是某个分区的搜索页，还是一部作品的详情页
 
 这样切换分区时各自的搜索状态都能保留。
@@ -14,8 +14,8 @@ import flet as ft
 
 from .. import config, theme
 from ..models import SearchCard
-from ..services import PARTITIONS, Partition, PartitionMeta, get_meta
-from .components import AccountBar, empty_block
+from ..services import PARTITIONS, Partition, PartitionMeta
+from .components import AccountBar
 from .views import DetailView, SearchView
 
 
@@ -120,7 +120,7 @@ class BiliAssistantApp:
                 ],
             )
         return ft.Text(
-            "给一部动漫批量点赞 · 投币 · 收藏",
+            "给动漫批量点赞 · 投币 · 收藏",
             size=12,
             color=theme.TEXT_TERTIARY,
         )
@@ -129,12 +129,7 @@ class BiliAssistantApp:
         self._stop_detail()
         self._active = partition
         self._render_partition_bar()
-
-        meta = get_meta(partition)
-        if meta.enabled:
-            self._body.content = self._search_views[partition].control
-        else:
-            self._body.content = self._coming_soon(meta)
+        self._body.content = self._search_views[partition].control
         self._page.update()
 
     def _open_detail(self, card: SearchCard) -> None:
@@ -183,15 +178,5 @@ class BiliAssistantApp:
                         weight=ft.FontWeight.BOLD if active else None,
                     ),
                 ],
-            ),
-        )
-
-    def _coming_soon(self, meta: PartitionMeta) -> ft.Control:
-        return ft.Container(
-            expand=True,
-            alignment=ft.Alignment.CENTER,
-            content=empty_block(
-                f"「{meta.label}」分区正在开发中",
-                "先把「国创」分区的搜索和详情做扎实，随后再接入这个分区。",
             ),
         )

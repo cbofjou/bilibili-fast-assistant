@@ -3,7 +3,7 @@
 全部需要登录 Cookie，并且 ``csrf`` 参数必须是 Cookie 里的 ``bili_jct``。
 
 接口细节见 docs/bilibili-api-research.md 第 5 节，其中收藏要特别注意：
-番剧 / 影视单集的资源类型是 ``type=42``，和普通 UGC 视频的 ``type=2`` 不一样，
+番剧 / 影视单集在收藏接口里的资源类型是 ``type=42``（``type=2`` 是普通稿件），
 而且必须给一个收藏夹 id。
 """
 

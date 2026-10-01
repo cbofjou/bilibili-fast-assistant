@@ -78,7 +78,7 @@ def _from_view(api: BiliApi, view: dict[str, Any], source: str) -> ResolvedSeaso
     if not match:
         title = view.get("title") or "这条稿件"
         raise DirectLinkError(
-            f"《{title}》是普通投稿，不属于番剧 / 国创，请到「UP」分区使用。"
+            f"《{title}》是普通投稿，不属于番剧 / 国创，这个工具只支持番剧和国创。"
         )
     ep_id = int(match.group(1))
     return _from_ep_id(api, ep_id, f"{source} → ep{ep_id}")

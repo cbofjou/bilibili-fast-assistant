@@ -1,18 +1,18 @@
 # bilibili-fast-assistant
 
-给 B 站的动漫 / UP 批量「点赞 / 投币 / 收藏」的桌面小工具，Python 3.12 + Flet。
+给 B 站的番剧 / 国创批量「点赞 / 投币 / 收藏」的桌面小工具，Python 3.12 + Flet。
 
-> 目前「国创」分区已经能用：搜索 → 详情 → 选集 → 执行三连。
-> 番剧 / UP 两个分区还是占位。
+> 目前「国创」和「番剧」两个分区已经能用：搜索 → 详情 → 选集 → 执行三连。
+> 两边共用同一套 PGC 管线，只是靠 ``season_type`` 区分分区。
 
 ## 当前进度
 
 已完成：
 
-- 顶部分区栏：国创 / 番剧 / UP（国创已接入，另外两个是占位）
+- 顶部分区栏：国创 / 番剧
 - **扫码登录**：手机哔哩哔哩扫一下即可，不需要输入账号密码
 - 登录后顶部显示**硬币余额**（替代原来的标语），并缓存昵称与头像
-- 国创搜索，支持两种方式
+- 国创 / 番剧搜索，支持两种方式
   - **精准空降**：粘贴 BV / av / ep / ss 链接或 `b23.tv` 短链，只出 1 张卡片
   - **模糊搜索**：输入名字关键词，出多张卡片
   - 结果以卡片列表渲染（封面、评分、更新进度、地区 / 风格）
@@ -98,7 +98,7 @@ src/bilibili_fast_assistant/
 │   ├── http.py            #   统一 httpx 客户端（UA / Referer / 错误码）
 │   ├── wbi.py             #   WBI 签名（搜索接口必须要）
 │   ├── errors.py          #   异常类型与错误码文案
-│   ├── search.py          #   搜索三条通道
+│   ├── search.py          #   搜索通道与 WBI 签名调用
 │   └── bangumi.py         #   番剧 / 影视接口
 ├── models/                # 结构化数据
 │   ├── bangumi.py         #   SearchCard / Episode / ArcGroup / SeasonDetail
@@ -106,7 +106,7 @@ src/bilibili_fast_assistant/
 ├── services/              # 业务逻辑
 │   ├── input_parser.py    #   把用户粘贴的东西解析成统一输入
 │   ├── resolver.py        #   直达链接 -> season_id
-│   ├── partition.py       #   三个分区的规则
+│   ├── partition.py       #   两个分区的规则
 │   ├── catalog.py         #   原始 JSON -> SeasonDetail（含篇章还原）
 │   └── search_service.py  #   统一搜索入口
 └── ui/

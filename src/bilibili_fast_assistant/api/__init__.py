@@ -18,7 +18,6 @@ from .http import BiliHttp, strip_html
 from .search import (
     SEARCH_TYPE_BANGUMI,
     SEARCH_TYPE_FT,
-    SEARCH_TYPE_VIDEO,
     SearchApi,
 )
 from .wbi import WbiSigner
@@ -76,7 +75,6 @@ __all__ = [
     "ActionApi",
     "SEARCH_TYPE_BANGUMI",
     "SEARCH_TYPE_FT",
-    "SEARCH_TYPE_VIDEO",
     "SearchApi",
     "WbiSigner",
     "is_risk_error",

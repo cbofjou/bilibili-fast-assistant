@@ -67,9 +67,8 @@ SEASON_TYPE_NAMES: dict[int, str] = {
     7: "综艺",
 }
 
-# 收藏资源的类型：番剧/影视单集是 42，普通 UGC 视频是 2
+# 收藏资源的类型：番剧 / 影视单集是 42
 FAV_TYPE_PGC = 42
-FAV_TYPE_VIDEO = 2
 
 # 登录后真正用得上的 Cookie：
 # SESSDATA 是登录票据，bili_jct 是写操作要用的 csrf，

@@ -103,7 +103,10 @@ class SearchView:
     def search(self, text: str | None = None) -> None:
         query = (text if text is not None else self._field.value or "").strip()
         if not query:
-            self._show_notice("先输入点什么吧～ 比如一部国创的名字，或者一集的链接。", "warning")
+            self._show_notice(
+                f"先输入点什么吧～ 比如一部{self.meta.label}的名字，或者一集的链接。",
+                "warning",
+            )
             self._results.content = self._idle_block()
             self._page.update()
             return

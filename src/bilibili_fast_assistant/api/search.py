@@ -1,10 +1,9 @@
 """搜索相关接口。
 
-B 站搜索分成三条独立通道（见 docs/bilibili-api-research.md 第 8 节）：
+B 站搜索按内容通道分开（见 docs/bilibili-api-research.md 第 8 节）：
 
 * ``media_bangumi`` —— 番剧 + 国创
 * ``media_ft``      —— 电影 / 电视剧 / 纪录片 / 综艺
-* ``video``         —— UP 主投稿
 
 搜索接口必须带 WBI 签名，否则番剧 / 影视通道会直接返回 HTTP 412。
 """
@@ -20,7 +19,6 @@ from .wbi import WbiSigner
 
 SEARCH_TYPE_BANGUMI = "media_bangumi"
 SEARCH_TYPE_FT = "media_ft"
-SEARCH_TYPE_VIDEO = "video"
 
 _SEARCH_URL = f"{config.API_BASE}/x/web-interface/wbi/search/type"
 
